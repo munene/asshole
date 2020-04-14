@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6512765193619977733}
   - component: {fileID: 2826848590824999987}
   - component: {fileID: 8360495908516524234}
-  - component: {fileID: 7373624290004194329}
   m_Layer: 0
   m_Name: A-Diamonds
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7373624290004194329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7798726810910966806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 3
-  value: A

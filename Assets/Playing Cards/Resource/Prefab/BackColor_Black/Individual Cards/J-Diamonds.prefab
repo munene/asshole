@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2856816998121360122}
   - component: {fileID: 6556807108713345228}
   - component: {fileID: 703401809864461365}
-  - component: {fileID: -3931009907514477151}
   m_Layer: 0
   m_Name: J-Diamonds
   m_TagString: J-Diamonds
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-3931009907514477151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296520148085422313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 3
-  value: J

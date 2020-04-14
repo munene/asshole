@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4325114121260256646}
   - component: {fileID: 4710451710574819248}
   - component: {fileID: 1324739665008954185}
-  - component: {fileID: 5700284661873795626}
   m_Layer: 0
   m_Name: 10-Hearts
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5700284661873795626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747243187590446997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 1
-  value: 10

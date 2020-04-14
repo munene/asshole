@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - 3-Hearts
+  - K-Clubs
+  - K-Diamonds
+  - J-Diamonds
+  - Q-Diamonds
+  - Q-Clubs
   layers:
   - Default
   - TransparentFX

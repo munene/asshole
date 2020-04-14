@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8309986683760894944}
   - component: {fileID: 1011065139740563926}
   - component: {fileID: 6716150209104028975}
-  - component: {fileID: -6750773984010099627}
   m_Layer: 0
   m_Name: Q-Clubs
   m_TagString: Q-Clubs
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-6750773984010099627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4974323665272148467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 0
-  value: Q

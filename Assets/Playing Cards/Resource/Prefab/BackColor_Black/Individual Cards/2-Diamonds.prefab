@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4332134478106937488}
   - component: {fileID: 4703398370520494758}
   - component: {fileID: 1331194733829918303}
-  - component: {fileID: 5248929787538868144}
   m_Layer: 0
   m_Name: 2-Diamonds
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5248929787538868144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 740152203769002627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 3
-  value: 2

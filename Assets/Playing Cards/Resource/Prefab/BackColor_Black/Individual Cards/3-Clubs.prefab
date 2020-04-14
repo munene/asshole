@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1671247979664000056}
   - component: {fileID: 7668066186788699662}
   - component: {fileID: 4131763463291831031}
-  - component: {fileID: -4390419589188875611}
   m_Layer: 0
   m_Name: 3-Clubs
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-4390419589188875611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2407788585431381547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 0
-  value: 3

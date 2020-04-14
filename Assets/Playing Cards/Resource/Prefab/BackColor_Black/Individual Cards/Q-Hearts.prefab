@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4754137903215278751}
   - component: {fileID: 4368792368142532777}
   - component: {fileID: 8042752633302760528}
-  - component: {fileID: -8947960601953339353}
   m_Layer: 0
   m_Name: Q-Hearts
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-8947960601953339353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8620257906845747340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 1
-  value: Q

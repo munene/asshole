@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6027044796829492003}
   - component: {fileID: 3386526533147187477}
   - component: {fileID: 9062318439341204972}
-  - component: {fileID: -8048921196618203187}
   m_Layer: 0
   m_Name: Q-Diamonds
   m_TagString: Q-Diamonds
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-8048921196618203187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7349598165893746992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40243626c5e821842806b4bea6dc8eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFamily: 3
-  value: Q
