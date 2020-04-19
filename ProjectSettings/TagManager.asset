@@ -4,11 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - K-Clubs
-  - K-Diamonds
-  - J-Diamonds
-  - Q-Diamonds
-  - Q-Clubs
+  - Player Card Pile
   layers:
   - Default
   - TransparentFX

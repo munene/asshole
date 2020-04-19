@@ -20,29 +20,22 @@ public class TableController : MonoBehaviour
         ShuffleCards();
 
         // Initialize the players and their decks
-        var numberOfCardsPerUser = Convert.ToInt32(Math.Floor((decimal)cardPrefabs.Count / 2));
+        var numberOfCardsPerUser = Convert.ToInt32(Math.Floor((decimal)cardPrefabs.Count / numberOfPlayers));
 
         for (int i = 0; i < numberOfPlayers; i++)
         {
             var numberToSkip = Convert.ToInt32(i * numberOfCardsPerUser);
             var cards = cardPrefabs.Skip(numberToSkip).Take(numberOfCardsPerUser).ToList();
 
+            UsableCardPileController cardPileController;
+
             // Mine
             if (i == 0)
-            {
-                PlaceCards(userCardPile, cards);
-            }
-        }
-    }
+                cardPileController = userCardPile.GetComponent<UsableCardPileController>();
+            else
+                cardPileController = opponentCardPiles[i - 1].GetComponent<UsableCardPileController>();
 
-    // Instantiate cards, slightly on top of each other
-    private void PlaceCards(Transform pile, List<GameObject> cards)
-    {
-        for (int i = 0; i < cards.Count; i++)
-        {
-            var card = cards[i];
-            var cardGameObject = Instantiate(card, userCardPile.localPosition + new Vector3(0f, 0.001f * i, 0f), new Quaternion(0f, 0f, 180f, 0f));
-            cardGameObject.transform.parent = pile.transform;
+            cardPileController.GenerateCards(cards);
         }
     }
 
