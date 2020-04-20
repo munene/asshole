@@ -15,5 +15,14 @@ public class DiscardPileController : MonoBehaviour
 
         var cardGameObject = Instantiate(card, cardPosition, Quaternion.Euler(new Vector3(gameObject.transform.eulerAngles.x, yRotation, 0)));
         cardGameObject.transform.parent = gameObject.transform;
+        Cards.Add(card);
+
+        // Calculate if the pile can be claimed
+        CalculatePileClaimability();
+    }
+
+    private void CalculatePileClaimability()
+    {
+
     }
 }

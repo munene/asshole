@@ -1,4 +1,4 @@
-﻿public enum CardFamilyEnum
+﻿public enum CardSuit
 {
     Clubs,
     Hearts,

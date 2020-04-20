@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1800614358702347850}
   - component: {fileID: 1143409283599764598}
   - component: {fileID: 4557664132453488444}
+  - component: {fileID: 321844503683701667}
   m_Layer: 0
   m_Name: A-Diamonds
   m_TagString: Untagged
@@ -64,6 +65,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &321844503683701667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800614358702347851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd928cf56e08c94ea0ecf813ec09168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suit: 3
+  type: 1
+  value: 11
 --- !u!1 &1800614359400962936
 GameObject:
   m_ObjectHideFlags: 0
