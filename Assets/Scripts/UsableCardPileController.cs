@@ -7,20 +7,6 @@ public class UsableCardPileController : MonoBehaviour
     public Transform discardPile;
     private Stack<GameObject> Cards { get; set; } = new Stack<GameObject>();
 
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //        RaycastHit hit;
-
-    //        if (Physics.Raycast(ray, out hit) && (hit.transform.gameObject.tag == "Player Card Pile" || hit.transform.parent.gameObject.tag == "Player Card Pile"))
-    //        {
-    //            print("tereyyhrgjm");
-    //        }
-    //    }
-    //}
-
     private void OnMouseDown()
     {
         var currentCard = Cards.Pop();
