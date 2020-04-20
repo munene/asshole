@@ -6,13 +6,22 @@ public class UsableCardPileController : MonoBehaviour
 {
     public Transform discardPile;
     private Stack<GameObject> Cards { get; set; } = new Stack<GameObject>();
+    private TableController TableController { get; set; }
+
+    private void Awake()
+    {
+        var table = GameObject.Find("Table");
+        TableController = table.GetComponent<TableController>();
+    }
 
     private void OnMouseDown()
     {
-        var currentCard = Cards.Pop();
-        Destroy(currentCard);
-        var discardPileController = discardPile.GetComponent<DiscardPileController>();
-        discardPileController.DropCard(currentCard);
+        // Will only work when the box collider is enabled, which ideally happens only once
+
+        // If it's not the user's turn, ignore
+        if (TableController.UserCardPileIndex != TableController.NextTurnPosition) return;
+
+        DropCard();
     }
 
     // Instantiate cards, slightly on top of each other
@@ -27,5 +36,15 @@ public class UsableCardPileController : MonoBehaviour
 
             Cards.Push(cardGameObject);
         }
+    }
+
+    public void DropCard()
+    {
+        var currentCard = Cards.Pop();
+        Destroy(currentCard);
+        var discardPileController = discardPile.GetComponent<DiscardPileController>();
+        discardPileController.DropCard(currentCard);
+        TableController.NextTurnPosition++;
+        TableController.PlayNextTurn();
     }
 }

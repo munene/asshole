@@ -462,6 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259558117}
   - component: {fileID: 1259558118}
+  - component: {fileID: 1259558119}
   m_Layer: 0
   m_Name: Discard Pile
   m_TagString: Untagged
@@ -495,6 +496,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f0b9038bd9f6c4cae94eec84cd699f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1259558119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259558116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3162559, y: 0.05115774, z: 0.2778265}
+  m_Center: {x: 0, y: -0.005131796, z: 0}
 --- !u!1 &1278070911
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3317d246fedf644aa00a12431a0300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfPlayers: 3
   cardPiles:
   - {fileID: 679631160}
   - {fileID: 1164897793}

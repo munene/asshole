@@ -8,6 +8,11 @@ public class DiscardPileController : MonoBehaviour
     public List<GameObject> Cards { get; set; } = new List<GameObject>();
     private bool IsClaimable { get; set; } = false;
 
+    private void OnMouseDown()
+    {
+        //if (!IsClaimable) return;
+    }
+
     public void DropCard(GameObject card)
     {
         IsClaimable = false;
