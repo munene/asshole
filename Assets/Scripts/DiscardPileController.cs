@@ -7,15 +7,38 @@ public class DiscardPileController : MonoBehaviour
 {
     public List<GameObject> Cards { get; set; } = new List<GameObject>();
     private bool IsClaimable { get; set; } = false;
+    public UsableCardPileController[] UsableCardPileControllers { get; set; }
+
+    private void Awake()
+    {
+        UsableCardPileControllers = FindObjectsOfType<UsableCardPileController>();
+    }
 
     private void OnMouseDown()
     {
         //if (!IsClaimable) return;
+
+        // Find the user's card pile
+        var userCardPile = GameObject.FindGameObjectWithTag("Player Card Pile");
+        var userCardPileController = userCardPile.GetComponent<UsableCardPileController>();
+        Cards.Reverse();
+        userCardPileController.ClaimCards(Cards);
+
+        foreach (var card in Cards)
+        {
+            Destroy(card);
+        }
     }
 
-    public void DropCard(GameObject card)
+    internal void DropCard(GameObject card)
     {
         IsClaimable = false;
+
+        // This will update cliamability to false, to stop AIs from attempting to pursue the pile
+        UpdateOtherPlayersOnClaimability();
+
+        // Clear any messages being shown to the player
+        GameObject.Find("Player Message").GetComponent<TMPro.TextMeshPro>().text = "";
 
         var xPosition = gameObject.transform.position.x + UnityEngine.Random.Range(-0.03f, 0.03f);
         var yRotation = gameObject.transform.eulerAngles.y + UnityEngine.Random.Range(-35, 23);
@@ -23,11 +46,14 @@ public class DiscardPileController : MonoBehaviour
         var cardPosition = new Vector3(xPosition, gameObject.transform.position.y + 0.1f, zPosition);
 
         var cardGameObject = Instantiate(card, cardPosition, Quaternion.Euler(new Vector3(gameObject.transform.eulerAngles.x, yRotation, 0)));
-        cardGameObject.transform.parent = gameObject.transform;
+        cardGameObject.transform.SetParent(gameObject.transform);
         Cards.Add(cardGameObject);
 
         // Calculate if the pile can be claimed
         CalculatePileClaimability();
+
+        // Update functionality after we access the new claimability
+        UpdateOtherPlayersOnClaimability();
     }
 
     private void CalculatePileClaimability()
@@ -57,14 +83,34 @@ public class DiscardPileController : MonoBehaviour
             var secondCardController = secondCard.GetComponent<CardController>();
             IsClaimable = CheckCardSummations(firstCardController, secondCardController);
         }
-
-        print(IsClaimable);
     }
 
-    // Check if the two cards are number AND their value == 10, or that the top card is the ten of diamonds
+    // Check if the two cards are number AND their value == 10, or their value is the same, or that the top card is the ten of diamonds
     private bool CheckCardSummations(CardController topCard, CardController otherCard)
     {
         return ((topCard.value + otherCard.value == 10) && topCard.type == CardType.Number && otherCard.type == CardType.Number) ||
+            topCard.value == otherCard.value ||
             (topCard.value == 10 && topCard.suit == CardSuit.Diamonds);
+    }
+
+    internal bool ClaimCards(UsableCardPileController cardPileController)
+    {
+        if (IsClaimable)
+        {
+            cardPileController.ClaimCards(Cards);
+            // TODO: Send everyone else the message of who claimed the cards via the ReceiveMessage function
+            return true;
+        }
+
+        return false;
+    }
+
+    // Update all other players on the claimability of the discard pile
+    private void UpdateOtherPlayersOnClaimability()
+    {
+        foreach (var cardPileController in UsableCardPileControllers)
+        {
+            cardPileController.UpdateDiscardPileClaimability(IsClaimable);
+        }
     }
 }

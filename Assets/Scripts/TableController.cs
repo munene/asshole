@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class TableController : MonoBehaviour
@@ -26,11 +27,30 @@ public class TableController : MonoBehaviour
         new Vector3 (45f, 180f, 0),
         new Vector3 (45f, -90f, 0)
     };
+    private List<Vector3> TextPositions { get; set; } = new List<Vector3>
+    {
+        new Vector3 (0, 0.858f, -0.25f),
+        new Vector3 (-0.434f, 0.858f, 0),
+        new Vector3 (0, 0.858f, 0),
+        new Vector3 (-0.434f, 0.858f, 0.25f)
+    };
+    private List<Vector3> TextRotations { get; set; } = new List<Vector3>
+    {
+        new Vector3 (90f, 0, 0),
+        new Vector3 (90f, 90f, 0),
+        new Vector3 (90f, 180f, 0),
+        new Vector3 (90f, -90f, 0)
+    };
+
+    private GameObject playerMessageText;
+
     public int NextTurnPosition { get; set; } = 0;
     public int UserCardPileIndex { get; set; } = 0;
 
     private void Awake()
     {
+        playerMessageText = GameObject.Find("Player Message");
+
         DisableAllCardPiles();
 
         //Shuffle the deck
@@ -60,6 +80,8 @@ public class TableController : MonoBehaviour
         // Pan camera to cardpile
         Camera.main.transform.position = CameraPositions[UserCardPileIndex];
         Camera.main.transform.rotation = Quaternion.Euler(CameraRotations[UserCardPileIndex]);
+        playerMessageText.transform.position = TextPositions[UserCardPileIndex];
+        playerMessageText.transform.rotation = Quaternion.Euler(TextRotations[UserCardPileIndex]);
 
         // Start turn with the first person
         PlayNextTurn();
@@ -95,7 +117,7 @@ public class TableController : MonoBehaviour
         cardPile.tag = "Player Card Pile";
     }
 
-    public void PlayNextTurn()
+    internal void PlayNextTurn()
     {
         if (NextTurnPosition > numberOfPlayers - 1)
         {
@@ -105,6 +127,9 @@ public class TableController : MonoBehaviour
         if (cardPiles[NextTurnPosition].gameObject.tag == "Player Card Pile")
         {
             // Let the player know that it's their turn;
+            playerMessageText.SetActive(true);
+            var textComponent = playerMessageText.GetComponent<TextMeshPro>();
+            textComponent.text = "Your Turn";
         }
         else
         {
@@ -115,7 +140,7 @@ public class TableController : MonoBehaviour
 
     private IEnumerator PlayAiTurn()
     {
-        var secondsToWait = UnityEngine.Random.Range(1f, 2f);
+        var secondsToWait = UnityEngine.Random.Range(0.5f, 1f);
         yield return new WaitForSeconds(secondsToWait);
         var cardPileController = UsableCardPiles[NextTurnPosition];
         cardPileController.DropCard();
