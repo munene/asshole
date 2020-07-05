@@ -30,10 +30,10 @@ public class TableController : MonoBehaviour
     };
     private List<Vector3> TextPositions { get; set; } = new List<Vector3>
     {
-        new Vector3 (0, 0.858f, -0.25f),
+        new Vector3 (0, 0.858f, -0.2f),
         new Vector3 (-0.434f, 0.858f, 0),
-        new Vector3 (0, 0.858f, 0.25f),
-        new Vector3 (-0.434f, 0.858f, 0)
+        new Vector3 (0, 0.858f, 0.2f),
+        new Vector3 (0.434f, 0.858f, 0)
     };
     private List<Vector3> TextRotations { get; set; } = new List<Vector3>
     {
@@ -135,7 +135,7 @@ public class TableController : MonoBehaviour
 
     private IEnumerator PlayAiTurn()
     {
-        var secondsToWait = UnityEngine.Random.Range(0.5f, 2f);
+        var secondsToWait = UnityEngine.Random.Range(0.5f, 1.5f);
         yield return new WaitForSeconds(secondsToWait);
         var cardPileController = UsableCardPiles[NextTurnPosition];
         cardPileController.DropCard();
