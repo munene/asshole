@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,9 +28,6 @@ public class DiscardPileController : MonoBehaviour
     internal void DropCard(GameObject cardGameObject)
     {
         IsClaimable = false;
-
-        // This will update cliamability to false, to stop AIs from attempting to pursue the pile
-        UpdateOtherPlayersOnClaimability();
 
         // Clear any messages being shown to the player
         GameObject.Find("Player Message").GetComponent<TMPro.TextMeshPro>().text = "";
@@ -99,6 +97,7 @@ public class DiscardPileController : MonoBehaviour
     {
         if (IsClaimable)
         {
+            IsClaimable = false;
             cardPileController.ClaimCards(Cards);
             Cards.Clear();
 
@@ -112,7 +111,12 @@ public class DiscardPileController : MonoBehaviour
     // Update all other players on the claimability of the discard pile
     private void UpdateOtherPlayersOnClaimability()
     {
-        foreach (var cardPileController in UsableCardPileControllers)
+        var tempCardControllers = UsableCardPileControllers.ToList();
+
+        // Shuffle who gets informed first
+        tempCardControllers = tempCardControllers.Shuffle();
+
+        foreach (var cardPileController in tempCardControllers)
         {
             cardPileController.UpdateDiscardPileClaimability(IsClaimable);
         }

@@ -83,7 +83,7 @@ public class UsableCardPileController : MonoBehaviour
             if (gameObject.tag != "Player Card Pile")
                 StartCoroutine(ClaimCardsAutomatically());
             else
-                SendClaimabilityHint();
+                ShowClaimabilityHint();
         }
         else
         {
@@ -96,7 +96,7 @@ public class UsableCardPileController : MonoBehaviour
     // To be used by AI only!
     private IEnumerator ClaimCardsAutomatically()
     {
-        var secondsToWait = UnityEngine.Random.Range(2f, 3f);
+        var secondsToWait = UnityEngine.Random.Range(0.5f, 1.5f);
         yield return new WaitForSeconds(secondsToWait);
         var discardPileController = FindObjectOfType<DiscardPileController>();
         discardPileController.ClaimCards(this);
@@ -113,7 +113,7 @@ public class UsableCardPileController : MonoBehaviour
         GenerateCards(cards, false);
     }
 
-    private void SendClaimabilityHint()
+    private void ShowClaimabilityHint()
     {
         ShowText("Claim the cards!");
     }

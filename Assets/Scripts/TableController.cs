@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,13 +92,7 @@ public class TableController : MonoBehaviour
     // TODO: Look this up
     private void ShuffleCards()
     {
-        for (int i = 0; i < cardPrefabs.Count; i++)
-        {
-            var temp = cardPrefabs[i];
-            int randomIndex = UnityEngine.Random.Range(i, cardPrefabs.Count);
-            cardPrefabs[i] = cardPrefabs[randomIndex];
-            cardPrefabs[randomIndex] = temp;
-        }
+        cardPrefabs = cardPrefabs.Shuffle();
     }
 
     private void DisableAllCardPiles()
@@ -140,7 +135,7 @@ public class TableController : MonoBehaviour
 
     private IEnumerator PlayAiTurn()
     {
-        var secondsToWait = UnityEngine.Random.Range(0.5f, 1f);
+        var secondsToWait = UnityEngine.Random.Range(0.5f, 2f);
         yield return new WaitForSeconds(secondsToWait);
         var cardPileController = UsableCardPiles[NextTurnPosition];
         cardPileController.DropCard();
