@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -484,8 +485,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.09228381, y: 0.01574963, z: 0.1240792}
-  m_Center: {x: -0.0009225703, y: 0.03036591, z: 0.002076127}
+  m_Size: {x: 0.09228381, y: 0.026721, z: 0.1324155}
+  m_Center: {x: 0, y: -0.0209561, z: -0.005469196}
 --- !u!1 &971869744
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,8 +530,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.09228381, y: 0.01574963, z: 0.1240792}
-  m_Center: {x: -0.0009225703, y: 0.03036591, z: 0.002076127}
+  m_Size: {x: 0.09228381, y: 0.026721, z: 0.1324155}
+  m_Center: {x: 0, y: -0.0209561, z: -0.005469196}
 --- !u!114 &971869747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,8 +662,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.09228381, y: 0.01574963, z: 0.1240792}
-  m_Center: {x: -0.0009225703, y: 0.03036591, z: 0.002076127}
+  m_Size: {x: 0.09228381, y: 0.026721, z: 0.1324155}
+  m_Center: {x: 0, y: -0.0209561, z: -0.005469196}
 --- !u!114 &1164897795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,8 +1087,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.09228381, y: 0.01574963, z: 0.1240792}
-  m_Center: {x: -0.0009225703, y: 0.03036591, z: 0.002076127}
+  m_Size: {x: 0.09228381, y: 0.026721, z: 0.1324155}
+  m_Center: {x: 0, y: -0.0209561, z: -0.005469196}
 --- !u!114 &1889990356
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,6 +60,12 @@ public class TableController : MonoBehaviour
         // Initialize the players and their decks
         var numberOfCardsPerUser = Convert.ToInt32(Math.Floor((decimal)cardPrefabs.Count / numberOfPlayers));
 
+        // Select the user's card pile
+        System.Random rnd = new System.Random();
+        UserCardPileIndex = rnd.Next(numberOfPlayers);
+        UserCardPile = cardPiles[UserCardPileIndex];
+        EnableUserCardPile(UserCardPile);
+
         for (int i = 0; i < numberOfPlayers; i++)
         {
             var numberToSkip = Convert.ToInt32(i * numberOfCardsPerUser);
@@ -72,13 +78,7 @@ public class TableController : MonoBehaviour
             UsableCardPiles.Add(cardPileController);
         }
 
-        // Select the user's card pile
-        System.Random rnd = new System.Random();
-        UserCardPileIndex = rnd.Next(numberOfPlayers);
-        UserCardPile = cardPiles[UserCardPileIndex];
-        EnableUserCardPile(UserCardPile);
-
-        // Pan camera to cardpile
+        // Pan secondary camera to cardpile
         Camera.main.transform.position = CameraPositions[UserCardPileIndex];
         Camera.main.transform.rotation = Quaternion.Euler(CameraRotations[UserCardPileIndex]);
         playerMessageText.transform.position = TextPositions[UserCardPileIndex];
@@ -89,7 +89,6 @@ public class TableController : MonoBehaviour
     }
 
     // Based on the Fisher-Yates Shuffle
-    // TODO: Look this up
     private void ShuffleCards()
     {
         cardPrefabs = cardPrefabs.Shuffle();
@@ -107,9 +106,13 @@ public class TableController : MonoBehaviour
 
     private void EnableUserCardPile(Transform cardPile)
     {
-        var boxCollider = cardPile.GetComponent<BoxCollider>();
-        boxCollider.enabled = true;
         cardPile.tag = "Player Card Pile";
+    }
+
+    public void SetPlayerCardPileCollider(bool enabled)
+    {
+        var boxCollider = UserCardPile.GetComponent<BoxCollider>();
+        boxCollider.enabled = enabled;
     }
 
     internal void PlayNextTurn()

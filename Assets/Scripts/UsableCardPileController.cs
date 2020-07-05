@@ -32,6 +32,14 @@ public class UsableCardPileController : MonoBehaviour
     // Instantiate cards, slightly on top of each other
     internal void GenerateCards(List<GameObject> cards, bool shouldInitCards)
     {
+        var isUserCardPile = gameObject.tag == "Player Card Pile";
+
+        // Disable the player's cardpile collider to allow cards to go through it
+        if (isUserCardPile)
+        {
+            TableController.SetPlayerCardPileCollider(false);
+        }
+
         /*
          * Get the card pile transform because we'll edit the original version later,
          * and rely on the physics of gravity for the original to fix itself
@@ -60,6 +68,12 @@ public class UsableCardPileController : MonoBehaviour
             cardGameObject.transform.SetParent(cardPileTransform);
 
             Cards.Push(cardGameObject);
+        }
+
+        // Re-enable the player's card pile collider to detect mouse clicks
+        if (isUserCardPile)
+        {
+            TableController.SetPlayerCardPileCollider(true);
         }
     }
 
