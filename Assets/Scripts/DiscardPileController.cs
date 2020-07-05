@@ -16,21 +16,15 @@ public class DiscardPileController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //if (!IsClaimable) return;
+        if (!IsClaimable) return;
 
         // Find the user's card pile
         var userCardPile = GameObject.FindGameObjectWithTag("Player Card Pile");
         var userCardPileController = userCardPile.GetComponent<UsableCardPileController>();
-        Cards.Reverse();
-        userCardPileController.ClaimCards(Cards);
-
-        foreach (var card in Cards)
-        {
-            Destroy(card);
-        }
+        ClaimCards(userCardPileController);
     }
 
-    internal void DropCard(GameObject card)
+    internal void DropCard(GameObject cardGameObject)
     {
         IsClaimable = false;
 
@@ -45,8 +39,13 @@ public class DiscardPileController : MonoBehaviour
         var zPosition = gameObject.transform.position.z + UnityEngine.Random.Range(-0.01f, 0.01f);
         var cardPosition = new Vector3(xPosition, gameObject.transform.position.y + 0.1f, zPosition);
 
-        var cardGameObject = Instantiate(card, cardPosition, Quaternion.Euler(new Vector3(gameObject.transform.eulerAngles.x, yRotation, 0)));
+
+        // Rotate and displace the card a little bit to simulate the card being thrown rather than being carefully placed on the discard pile
+        cardGameObject.transform.position = cardPosition;
+        cardGameObject.transform.rotation = Quaternion.Euler(new Vector3(gameObject.transform.eulerAngles.x, yRotation, 0));
+
         cardGameObject.transform.SetParent(gameObject.transform);
+
         Cards.Add(cardGameObject);
 
         // Calculate if the pile can be claimed
@@ -58,6 +57,9 @@ public class DiscardPileController : MonoBehaviour
 
     private void CalculatePileClaimability()
     {
+        // If the card pile has less than two cards, then there's no need to calculate pile claimability
+        if (Cards.Count < 2) return;
+
         var subpile = Cards.Skip(Math.Max(0, Cards.Count - 3)).ToList();
 
         // Treat this like a stack. The top card was dropped last
@@ -98,6 +100,8 @@ public class DiscardPileController : MonoBehaviour
         if (IsClaimable)
         {
             cardPileController.ClaimCards(Cards);
+            Cards.Clear();
+
             // TODO: Send everyone else the message of who claimed the cards via the ReceiveMessage function
             return true;
         }

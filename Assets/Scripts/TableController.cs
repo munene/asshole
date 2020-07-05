@@ -31,8 +31,8 @@ public class TableController : MonoBehaviour
     {
         new Vector3 (0, 0.858f, -0.25f),
         new Vector3 (-0.434f, 0.858f, 0),
-        new Vector3 (0, 0.858f, 0),
-        new Vector3 (-0.434f, 0.858f, 0.25f)
+        new Vector3 (0, 0.858f, 0.25f),
+        new Vector3 (-0.434f, 0.858f, 0)
     };
     private List<Vector3> TextRotations { get; set; } = new List<Vector3>
     {
@@ -67,7 +67,7 @@ public class TableController : MonoBehaviour
             UsableCardPileController cardPileController;
 
             cardPileController = cardPiles[i].GetComponent<UsableCardPileController>();
-            cardPileController.GenerateCards(cards);
+            cardPileController.GenerateCards(cards, true);
             UsableCardPiles.Add(cardPileController);
         }
 

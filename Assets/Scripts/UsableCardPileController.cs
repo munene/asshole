@@ -30,14 +30,34 @@ public class UsableCardPileController : MonoBehaviour
     }
 
     // Instantiate cards, slightly on top of each other
-    internal void GenerateCards(List<GameObject> cards)
+    internal void GenerateCards(List<GameObject> cards, bool shouldInitCards)
     {
+        /*
+         * Get the card pile transform because we'll edit the original version later,
+         * and rely on the physics of gravity for the original to fix itself
+         */
+        var cardPileTransform = gameObject.transform;
+
+        //Lift the current card pile depending on the number of cards provided
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + (0.001f * cards.Count), gameObject.transform.position.z);
+
         for (int i = 0; i < cards.Count; i++)
         {
             var card = cards[i];
-            var cardGameObject = Instantiate(card, gameObject.transform.position + new Vector3(0f, 0.001f * i, 0f),
-                Quaternion.Euler(new Vector3(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, 180f)));
-            cardGameObject.transform.SetParent(gameObject.transform);
+            GameObject cardGameObject = card;
+
+            if (shouldInitCards)
+            {
+                cardGameObject = Instantiate(card, gameObject.transform.position + new Vector3(0f, 0.001f * i, 0f),
+                    Quaternion.Euler(new Vector3(gameObject.transform.eulerAngles.x, gameObject.transform.eulerAngles.y, 180f)));
+            }
+            else
+            {
+                cardGameObject.transform.position = cardPileTransform.position;
+                cardGameObject.transform.rotation = Quaternion.Euler(new Vector3(cardPileTransform.eulerAngles.x, cardPileTransform.eulerAngles.y, 180f));
+            }
+
+            cardGameObject.transform.SetParent(cardPileTransform);
 
             Cards.Push(cardGameObject);
         }
@@ -51,7 +71,6 @@ public class UsableCardPileController : MonoBehaviour
         if (!Cards.Any()) return;
 
         var currentCard = Cards.Pop();
-        Destroy(currentCard);
         var discardPileController = discardPile.GetComponent<DiscardPileController>();
         discardPileController.DropCard(currentCard);
         TableController.PlayNextTurn();
@@ -79,7 +98,8 @@ public class UsableCardPileController : MonoBehaviour
     {
         var secondsToWait = UnityEngine.Random.Range(2f, 3f);
         yield return new WaitForSeconds(secondsToWait);
-        AttemptToClaimCards();
+        var discardPileController = FindObjectOfType<DiscardPileController>();
+        discardPileController.ClaimCards(this);
     }
 
     internal void ClaimCards(List<GameObject> cards)
@@ -90,12 +110,7 @@ public class UsableCardPileController : MonoBehaviour
         }
 
         Cards.Clear();
-        GenerateCards(cards);
-    }
-    private void AttemptToClaimCards()
-    {
-        var discardPileController = FindObjectOfType<DiscardPileController>();
-        discardPileController.ClaimCards(this);
+        GenerateCards(cards, false);
     }
 
     private void SendClaimabilityHint()
