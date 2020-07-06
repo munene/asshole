@@ -21,7 +21,7 @@ public class UsableCardPileController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && gameObject.tag == "Player Card Pile")
         {
             ClaimCards();
         }
