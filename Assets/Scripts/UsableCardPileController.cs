@@ -19,6 +19,14 @@ public class UsableCardPileController : MonoBehaviour
         TableController = table.GetComponent<TableController>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            ClaimCards();
+        }
+    }
+
     private void OnMouseDown()
     {
         // Will only work when the box collider is enabled, which ideally happens only once
@@ -106,11 +114,17 @@ public class UsableCardPileController : MonoBehaviour
     {
         var secondsToWait = UnityEngine.Random.Range(0.5f, 1.5f);
         yield return new WaitForSeconds(secondsToWait);
+        ClaimCards();
+    }
+
+    internal void ClaimCards()
+    {
         var discardPileController = FindObjectOfType<DiscardPileController>();
         discardPileController.ClaimCards(this);
     }
 
-    internal void ClaimCards(List<GameObject> cards)
+    // Set claimed cards in the usable card pile
+    internal void SetClaimedCards(List<GameObject> cards)
     {
         if (Cards.Any())
         {

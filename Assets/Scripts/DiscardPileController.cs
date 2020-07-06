@@ -98,7 +98,7 @@ public class DiscardPileController : MonoBehaviour
         if (IsClaimable)
         {
             IsClaimable = false;
-            cardPileController.ClaimCards(Cards);
+            cardPileController.SetClaimedCards(Cards);
             Cards.Clear();
 
             // TODO: Send everyone else the message of who claimed the cards via the ReceiveMessage function
