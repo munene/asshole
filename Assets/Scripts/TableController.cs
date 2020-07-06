@@ -114,6 +114,7 @@ public class TableController : MonoBehaviour
     {
         var boxCollider = UserCardPile.GetComponent<BoxCollider>();
         boxCollider.enabled = enabled;
+        boxCollider.isTrigger = enabled;
     }
 
     internal void PlayNextTurn()

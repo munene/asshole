@@ -67,8 +67,8 @@ public class UsableCardPileController : MonoBehaviour
             Cards.Push(cardGameObject);
         }
 
-        // Re-enable the player's card pile collider to detect mouse
-        if (isUserCardPile) StartCoroutine(EnablePlayerCollider());
+        // Re-enable the player's card pile collider to detect mouse clicks
+        if (isUserCardPile) TableController.SetPlayerCardPileCollider(true);
     }
 
     internal void DropCard()
@@ -99,12 +99,6 @@ public class UsableCardPileController : MonoBehaviour
             if (gameObject.tag != "Player Card Pile")
                 StopCoroutine(ClaimCardsAutomatically());
         }
-    }
-
-    private IEnumerator EnablePlayerCollider()
-    {
-        yield return new WaitForSeconds(0.5f);
-        TableController.SetPlayerCardPileCollider(true);
     }
 
     // To be used by AI only!
