@@ -74,8 +74,9 @@ public class TableController : MonoBehaviour
             UsableCardPileController cardPileController;
 
             cardPileController = cardPiles[i].GetComponent<UsableCardPileController>();
-            cardPileController.GenerateCards(cards, true);
             UsableCardPiles.Add(cardPileController);
+
+            cardPileController.GenerateCards(cards, true);
         }
 
         // Pan secondary camera to cardpile

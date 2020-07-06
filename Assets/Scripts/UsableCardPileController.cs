@@ -35,10 +35,7 @@ public class UsableCardPileController : MonoBehaviour
         var isUserCardPile = gameObject.tag == "Player Card Pile";
 
         // Disable the player's cardpile collider to allow cards to go through it
-        if (isUserCardPile)
-        {
-            TableController.SetPlayerCardPileCollider(false);
-        }
+        if (isUserCardPile) TableController.SetPlayerCardPileCollider(false);
 
         /*
          * Get the card pile transform because we'll edit the original version later,
@@ -70,11 +67,8 @@ public class UsableCardPileController : MonoBehaviour
             Cards.Push(cardGameObject);
         }
 
-        // Re-enable the player's card pile collider to detect mouse clicks
-        if (isUserCardPile)
-        {
-            TableController.SetPlayerCardPileCollider(true);
-        }
+        // Re-enable the player's card pile collider to detect mouse
+        if (isUserCardPile) StartCoroutine(EnablePlayerCollider());
     }
 
     internal void DropCard()
@@ -105,6 +99,12 @@ public class UsableCardPileController : MonoBehaviour
             if (gameObject.tag != "Player Card Pile")
                 StopCoroutine(ClaimCardsAutomatically());
         }
+    }
+
+    private IEnumerator EnablePlayerCollider()
+    {
+        yield return new WaitForSeconds(0.5f);
+        TableController.SetPlayerCardPileCollider(true);
     }
 
     // To be used by AI only!
